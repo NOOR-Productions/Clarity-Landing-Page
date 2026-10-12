@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en" data-mode="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clarity: Free Reading &amp; Writing App with Read-Aloud</title>
+<meta name="description" content="Free reading and writing app with dark, bright and eye-care modes, read-aloud in six languages, Markdown and offline use. Built by NOOR Productions.">
+<meta name="author" content="NOOR Productions">
+<meta name="application-name" content="Clarity">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0d171b">
+
+<link rel="canonical" href="https://noor-productions.github.io/Clarity-Landing-Page/">
+<meta property="og:url" content="https://noor-productions.github.io/Clarity-Landing-Page/">
+<meta property="og:image" content="https://noor-productions.github.io/Clarity-Landing-Page/assets/og-image.png">
+<meta name="twitter:image" content="https://noor-productions.github.io/Clarity-Landing-Page/assets/og-image.png">
+
+<!--
+  TO EDIT LATER: the NOOR Productions links (sk-abdus-sattar.github.io/noor-productions-site)
+  still point to the old address. Replace them everywhere once that site has moved.
+-->
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Clarity by NOOR Productions">
+<meta property="og:title" content="Clarity: Free Reading &amp; Writing App with Read-Aloud">
+<meta property="og:description" content="Three comfort modes, read-aloud in six languages, Markdown and offline use. Free, built by NOOR Productions.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Clarity logo with the line: A calm place to read and write.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Clarity: Free Reading &amp; Writing App with Read-Aloud">
+<meta name="twitter:description" content="Three comfort modes, read-aloud in six languages, Markdown and offline use. Free, built by NOOR Productions.">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Clarity",
+      "description": "A free reading and writing app with three comfort modes, read-aloud, Markdown, export and offline use.",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires a modern web browser",
+      "inLanguage": "en",
+      "url": "https://noor-productions.github.io/Clarity-Landing-Page/",
+      "image": "https://noor-productions.github.io/Clarity-Landing-Page/assets/og-image.png",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Dark, Bright and Eye care comfort modes",
+        "Read-aloud in English, French, Portuguese (Brazil), Spanish, German and Mandarin Chinese",
+        "Markdown writing with preview",
+        "Export to .txt, .md and PDF",
+        "Installable, works offline"
+      ],
+      "creator": { "@id": "https://sk-abdus-sattar.github.io/noor-productions-site/#organization" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sk-abdus-sattar.github.io/noor-productions-site/#organization",
+      "name": "NOOR Productions",
+      "url": "https://sk-abdus-sattar.github.io/noor-productions-site/",
+      "description": "A web design and development studio that builds websites and web apps for businesses."
+    }
+  ]
+}
+</script>
+
+<script>
+  // Set the mode before first paint so the page never flashes the wrong theme.
+  (function () {
+    var mode = "dark";
+    try {
+      var saved = localStorage.getItem("clarity-landing-mode");
+      if (saved === "dark" || saved === "bright" || saved === "eye") mode = saved;
+      else if (window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches) mode = "bright";
+    } catch (e) {}
+    document.documentElement.setAttribute("data-mode", mode);
+  })();
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="ambient" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Clarity, back to top">
+      <span class="brand-wordmark" aria-hidden="true"></span><span class="brand-mark" aria-hidden="true"></span>
+    </a>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#features" data-spy="features">Features</a>
+      <a href="#noor" data-spy="noor">NOOR Productions</a>
+      <a href="#faq" data-spy="faq">FAQ</a>
+      <a href="case-study.html">Case study</a>
+    </nav>
+    <div class="bar-end">
+      <div class="mode-switch" role="radiogroup" aria-label="Comfort mode">
+        <button type="button" role="radio" data-mode-btn="dark" aria-checked="true">Dark</button>
+        <button type="button" role="radio" data-mode-btn="bright" aria-checked="false">Bright</button>
+        <button type="button" role="radio" data-mode-btn="eye" aria-checked="false">Eye care</button>
+      </div>
+      <a class="btn btn-primary btn-sm" href="https://sk-abdus-sattar.github.io/noor-productions-site/contact.html">Start a project</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap" id="top">
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">A calm place to read and write.</h1>
+        <p class="lede">Clarity is a free reading and writing space with three comfort modes, read-aloud in six languages, and Markdown. Open it in your browser, or install it and keep working offline.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://noor-productions.github.io/Clarity/">Open Clarity</a>
+          <a class="btn btn-ghost" href="#features">See what's inside</a>
+        </div>
+        <a class="byline" href="#noor"><span class="logo" aria-hidden="true"></span><span>Built by <strong>NOOR Productions</strong>, a web design and development studio</span></a>
+      </div>
+
+      <div class="sheet" aria-label="A sample Clarity page">
+        <div class="sheet-bar">
+          <button type="button" class="listen" id="listen" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path id="listen-icon" d="M4 2.5v11l9-5.5z"/></svg>
+            <span id="listen-label">Listen</span>
+          </button>
+          <div class="eq eq-sm" data-bars="5" aria-hidden="true"></div>
+        </div>
+        <div class="sheet-body">
+          <p class="sheet-title">Notes on slow reading</p>
+          <p id="sample">The eye tires before the mind does. A page that is easy on the eyes lets your attention stay on the words. Change the mode at the top of this page and watch the whole room change with it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" aria-labelledby="features-title">
+      <div class="section-head">
+        <h2 id="features-title">Everything Clarity does</h2>
+        <p>A small set of tools, each built to stay out of your way.</p>
+      </div>
+
+      <div class="bento">
+        <article class="tile tile-modes">
+          <h3>Three modes, three backdrops</h3>
+          <p>Dark, Bright and Eye care each have their own animated backgrounds, such as Aurora, Clouds and Embers, so the space suits the hour and your eyes. Pick one to try it on this page.</p>
+          <div class="swatches">
+            <button type="button" class="swatch sw-dark" data-swatch="dark" aria-pressed="false"><span class="mini"><b></b><b></b><b></b><b></b><em></em></span><span class="name">Dark</span></button>
+            <button type="button" class="swatch sw-bright" data-swatch="bright" aria-pressed="false"><span class="mini"><b></b><b></b><b></b><b></b><em></em></span><span class="name">Bright</span></button>
+            <button type="button" class="swatch sw-eye" data-swatch="eye" aria-pressed="false"><span class="mini"><b></b><b></b><b></b><b></b><em></em></span><span class="name">Eye care</span></button>
+          </div>
+        </article>
+
+        <article class="tile tile-listen">
+          <h3>Reads it aloud</h3>
+          <p>Clarity reads your text using the voices on your device, in:</p>
+          <ul class="chips">
+            <li>English</li><li>French</li><li>Portuguese (Brazil)</li><li>Spanish</li><li>German</li><li>Mandarin Chinese</li>
+          </ul>
+          <p class="note">No English voice on your device? Clarity can download one in a single click.</p>
+          <div class="eq eq-lg" data-bars="22" aria-hidden="true"></div>
+        </article>
+
+        <article class="tile tile-write">
+          <h3>Write in Markdown</h3>
+          <p>Type with simple marks, then switch to Preview to see the formatted result.</p>
+          <div class="editor" aria-hidden="true">
+            <div class="editor-frame">
+              <div class="tabs"><span class="on">Write</span><span>Preview</span></div>
+              <div class="split">
+                <pre>## Meeting notes
+**Decide** by Friday
+- Send the draft</pre>
+                <div class="rendered"><span class="h">Meeting notes</span><strong>Decide</strong> by Friday<ul><li>Send the draft</li></ul></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile tile-export">
+          <h3>Export when you're done</h3>
+          <p>Save your document as a text file, a Markdown file or a PDF. An empty document can't be exported, so you never end up with a blank file.</p>
+          <div class="files" aria-hidden="true"><span class="file">.txt</span><span class="file">.md</span><span class="file pdf">.pdf</span></div>
+        </article>
+
+        <article class="tile tile-offline">
+          <div>
+            <h3>Install it, use it offline</h3>
+            <p>Clarity is a progressive web app. Add it to your home screen or desktop and it keeps working without a connection. The one-click English voice needs a connection the first time you download it.</p>
+          </div>
+          <div class="phone" aria-hidden="true">
+            <span class="mk"></span>
+            <span class="nm">Clarity</span>
+            <span class="st"><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Works offline</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="noor" id="noor" aria-labelledby="noor-title">
+      <div class="noor-panel">
+        <div class="noor-intro">
+          <div class="noor-logo" role="img" aria-label="NOOR Productions logo"></div>
+          <h2 id="noor-title">Clarity is a NOOR Productions build.</h2>
+          <p>NOOR Productions is a web design and development studio. We design, build and launch websites and web apps for businesses, and we build them to be found. Clarity is the product we made for ourselves first, to show how we work.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://sk-abdus-sattar.github.io/noor-productions-site/contact.html">Start a project</a>
+            <a class="btn btn-ghost" href="https://sk-abdus-sattar.github.io/noor-productions-site/projects.html">See our work</a>
+          </div>
+          <p class="case-link"><a href="case-study.html">Read how we built Clarity</a></p>
+        </div>
+
+        <div>
+          <dl class="proof">
+            <div><dt>6</dt><dd>languages for read-aloud</dd></div>
+            <div><dt>3</dt><dd>comfort modes</dd></div>
+            <div><dt>3</dt><dd>export formats</dd></div>
+          </dl>
+          <p class="points-title">What that means for your project</p>
+          <ul class="noor-points">
+            <li><h3>Works offline</h3><p>A website that behaves like an app, so your customers can keep using it on a weak connection.</p></li>
+            <li><h3>Accessible by default</h3><p>Readable type, strong contrast and visible keyboard focus mean more people can use what we build.</p></li>
+            <li><h3>Tested in real browsers</h3><p>Clarity went through several rounds of testing in real browsers, and every bug we found was fixed before launch.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="section-head">
+        <h2 id="faq-title">Questions</h2>
+      </div>
+      <div class="faq-list">
+        <details><summary>Is Clarity free?</summary><p>Yes. Clarity is free to use in your browser.</p></details>
+        <details><summary>Does Clarity work offline?</summary><p>Yes. Install it from your browser's install button, or use Add to Home Screen on an iPhone or iPad, and it keeps working without a connection. The one-click English voice needs a connection the first time you download it.</p></details>
+        <details><summary>Which languages can Clarity read aloud?</summary><p>English, French, Portuguese (Brazil), Spanish, German and Mandarin Chinese, using the voices on your device. If a voice is missing, Clarity tells you. For English, it can download a voice for you in one click.</p></details>
+        <details><summary>What can I export?</summary><p>Text (.txt), Markdown (.md) and PDF. An empty document can't be exported.</p></details>
+        <details><summary>Who made Clarity?</summary><p>Clarity is built and maintained by <a href="#noor">NOOR Productions</a>, a web design and development studio.</p></details>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="who"><i aria-hidden="true"></i>&copy; 2026 NOOR Productions</span>
+    <a href="https://sk-abdus-sattar.github.io/noor-productions-site/">Visit the NOOR Productions site</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
