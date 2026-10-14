@@ -10,7 +10,20 @@
   var swatches = Array.prototype.slice.call(document.querySelectorAll("[data-swatch]"));
 
   /* ---------- Comfort mode ---------- */
-  function setMode(mode, moveFocus) {
+  var pill = document.querySelector(".mode-pill");
+  var reduceMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+
+  // Slide the highlight under the active option
+  function placePill(animate) {
+    var active = radios.filter(function (b) { return b.getAttribute("aria-checked") === "true"; })[0];
+    if (!pill || !active) return;
+    if (!animate) pill.style.transition = "none";
+    pill.style.width = active.offsetWidth + "px";
+    pill.style.transform = "translateX(" + active.offsetLeft + "px)";
+    if (!animate) { void pill.offsetWidth; pill.style.transition = ""; }
+  }
+
+  function applyMode(mode, moveFocus, animatePill) {
     root.setAttribute("data-mode", mode);
     radios.forEach(function (b) {
       var on = b.getAttribute("data-mode-btn") === mode;
@@ -22,25 +35,53 @@
       s.setAttribute("aria-pressed", s.getAttribute("data-swatch") === mode ? "true" : "false");
     });
     if (metaTheme) metaTheme.setAttribute("content", themeColors[mode]);
+    placePill(animatePill);
     try { localStorage.setItem("clarity-landing-mode", mode); } catch (e) {}
   }
 
+  // Change mode with a smooth reveal that grows from the clicked control
+  function switchMode(mode, origin, moveFocus) {
+    if (mode === root.getAttribute("data-mode")) return;
+    if (reduceMotion.matches) { applyMode(mode, moveFocus, false); return; }
+
+    if (document.startViewTransition) {
+      var r = origin ? origin.getBoundingClientRect() : null;
+      var x = r ? r.left + r.width / 2 : window.innerWidth / 2;
+      var y = r ? r.top + r.height / 2 : 0;
+      var radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+      var vt = document.startViewTransition(function () { applyMode(mode, moveFocus, true); });
+      vt.ready.then(function () {
+        root.animate(
+          { clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + radius + "px at " + x + "px " + y + "px)"] },
+          { duration: 800, easing: "cubic-bezier(0.65, 0, 0.35, 1)", pseudoElement: "::view-transition-new(root)" }
+        );
+      }).catch(function () {});
+    } else {
+      root.classList.add("mode-fading");
+      applyMode(mode, moveFocus, true);
+      window.setTimeout(function () { root.classList.remove("mode-fading"); }, 700);
+    }
+  }
+
   radios.forEach(function (b, i) {
-    b.addEventListener("click", function () { setMode(b.getAttribute("data-mode-btn")); });
+    b.addEventListener("click", function () { switchMode(b.getAttribute("data-mode-btn"), b); });
     b.addEventListener("keydown", function (e) {
       var next = null;
       if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % radios.length;
       if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (i - 1 + radios.length) % radios.length;
       if (next !== null) {
         e.preventDefault();
-        setMode(radios[next].getAttribute("data-mode-btn"), true);
+        switchMode(radios[next].getAttribute("data-mode-btn"), radios[next], true);
       }
     });
   });
   swatches.forEach(function (s) {
-    s.addEventListener("click", function () { setMode(s.getAttribute("data-swatch")); });
+    s.addEventListener("click", function () { switchMode(s.getAttribute("data-swatch"), s); });
   });
-  setMode(root.getAttribute("data-mode"));
+
+  applyMode(root.getAttribute("data-mode"), false, false);
+  window.addEventListener("resize", function () { placePill(false); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placePill(false); });
 
   /* ---------- Nav highlight for the section being read (landing page) ---------- */
   var links = Array.prototype.slice.call(document.querySelectorAll("[data-spy]"));
