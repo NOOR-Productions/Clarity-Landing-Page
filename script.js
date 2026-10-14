@@ -147,4 +147,42 @@
       window.addEventListener("pagehide", function () { speechSynthesis.cancel(); });
     }
   }
+  /* ---------- FAQ: answers slide open and closed ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".faq details"), function (d) {
+    var summary = d.querySelector("summary");
+    var body = d.querySelector(".faq-body");
+    var anim = null;
+    d.setAttribute("data-state", d.open ? "open" : "closed");
+
+    function animateTo(open) {
+      var wasOpen = d.open;
+      var startH = wasOpen ? body.getBoundingClientRect().height : 0;
+      var startO = wasOpen ? parseFloat(getComputedStyle(body).opacity) : 0;
+      if (anim) { anim.onfinish = null; anim.cancel(); }
+      d.setAttribute("data-state", open ? "open" : "closed");
+      if (open) d.open = true;
+      var endH = open ? body.scrollHeight : 0;
+      anim = body.animate(
+        { height: [startH + "px", endH + "px"], opacity: [startO, open ? 1 : 0] },
+        { duration: open ? 460 : 360, easing: "cubic-bezier(0.65, 0, 0.35, 1)", fill: "both" }
+      );
+      anim.onfinish = function () {
+        if (!open) d.open = false;
+        anim.onfinish = null;
+        anim.cancel();
+        anim = null;
+      };
+    }
+
+    summary.addEventListener("click", function (e) {
+      e.preventDefault();
+      var willOpen = d.getAttribute("data-state") !== "open";
+      if (reduceMotion.matches || !body.animate) {
+        d.open = willOpen;
+        d.setAttribute("data-state", willOpen ? "open" : "closed");
+        return;
+      }
+      animateTo(willOpen);
+    });
+  });
 })();
