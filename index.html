@@ -15,10 +15,6 @@
 <meta property="og:image" content="https://noor-productions.github.io/Clarity-Landing-Page/assets/og-image.png">
 <meta name="twitter:image" content="https://noor-productions.github.io/Clarity-Landing-Page/assets/og-image.png">
 
-<!--
-  TO EDIT LATER: the NOOR Productions links (sk-abdus-sattar.github.io/noor-productions-site)
-  still point to the old address. Replace them everywhere once that site has moved.
--->
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Clarity by NOOR Productions">
@@ -56,18 +52,30 @@
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "featureList": [
         "Dark, Bright and Eye care comfort modes",
+        "Eye care brightness and warmth sliders",
+        "Live contrast ratio badge graded AAA, AA or Too low",
+        "Animated backgrounds that are remembered for each mode",
+        "14 fonts including Atkinson Hyperlegible, with adjustable size, line spacing and line width",
+        "Paste plain text or Markdown with no outside formatting",
+        "Markdown writing with live preview",
+        "Word and character count",
+        "Saved documents list with automatic titles and auto-saved drafts",
         "Read-aloud in English, French, Portuguese (Brazil), Spanish, German and Mandarin Chinese",
-        "Markdown writing with preview",
-        "Export to .txt, .md and PDF",
-        "Installable, works offline"
+        "Best voice picked automatically, with an advanced voice picker",
+        "One-click free English voice download",
+        "Adjustable reading speed with play, pause and stop",
+        "Export to .txt, .md and PDF, plus copy to clipboard",
+        "Keyboard shortcuts",
+        "Installable, works offline",
+        "Keyboard focus, screen reader labels and responsive layout"
       ],
-      "creator": { "@id": "https://sk-abdus-sattar.github.io/noor-productions-site/#organization" }
+      "creator": { "@id": "https://noor-productions.github.io/noor-productions-site/#organization" }
     },
     {
       "@type": "Organization",
-      "@id": "https://sk-abdus-sattar.github.io/noor-productions-site/#organization",
+      "@id": "https://noor-productions.github.io/noor-productions-site/#organization",
       "name": "NOOR Productions",
-      "url": "https://sk-abdus-sattar.github.io/noor-productions-site/",
+      "url": "https://noor-productions.github.io/noor-productions-site/",
       "description": "A web design and development studio that builds websites and web apps for businesses."
     }
   ]
@@ -114,7 +122,7 @@
         <button type="button" role="radio" data-mode-btn="bright" data-label="Bright" aria-checked="false">Bright</button>
         <button type="button" role="radio" data-mode-btn="eye" data-label="Eye care" aria-checked="false">Eye care</button>
       </div>
-      <a class="btn btn-primary btn-sm" href="https://sk-abdus-sattar.github.io/noor-productions-site/contact.html">Start a project</a>
+      <a class="btn btn-primary btn-sm" href="https://noor-productions.github.io/noor-productions-site/contact.html">Start a project</a>
     </div>
   </div>
 </header>
@@ -128,6 +136,7 @@
         <p class="lede">Clarity is a free reading and writing space with three comfort modes, read-aloud in six languages, and Markdown. Open it in your browser, or install it and keep working offline.</p>
         <div class="actions">
           <a class="btn btn-primary" href="https://noor-productions.github.io/Clarity/">Open Clarity</a>
+          <a class="btn btn-soft" id="get-btn" href="https://noor-productions.github.io/Clarity/?install=1">Download Clarity</a>
           <a class="btn btn-ghost" href="#features">See what's inside</a>
         </div>
         <a class="byline" href="#noor"><span class="logo" aria-hidden="true"></span><span>Built by <strong>NOOR Productions</strong>, a web design and development studio</span></a>
@@ -151,7 +160,7 @@
     <section id="features" aria-labelledby="features-title">
       <div class="section-head">
         <h2 id="features-title">Everything Clarity does</h2>
-        <p>A small set of tools, each built to stay out of your way.</p>
+        <p>A small set of tools, each built to stay out of your way. Five highlights first, then the <a href="#all-features">full feature list</a>.</p>
       </div>
 
       <div class="bento">
@@ -177,15 +186,25 @@
 
         <article class="tile tile-write">
           <h3>Write in Markdown</h3>
-          <p>Type with simple marks, then switch to Preview to see the formatted result.</p>
-          <div class="editor" aria-hidden="true">
+          <p>Try it. Type up to 50 characters with simple marks, then press Preview.</p>
+          <div class="editor">
             <div class="editor-frame">
-              <div class="tabs"><span class="on">Write</span><span>Preview</span></div>
-              <div class="split">
-                <pre>## Meeting notes
+              <div class="tabs" role="tablist" aria-label="Write or preview">
+                <button type="button" role="tab" id="md-tab-write" aria-selected="true" aria-controls="md-panel-write">Write</button>
+                <button type="button" role="tab" id="md-tab-preview" aria-selected="false" aria-controls="md-panel-preview" tabindex="-1">Preview</button>
+              </div>
+              <div class="md-panel" role="tabpanel" id="md-panel-write" aria-labelledby="md-tab-write">
+                <label class="sr-only" for="md-input">Type Markdown, up to 50 characters</label>
+                <textarea id="md-input" maxlength="50" rows="4" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="md-count md-hint">## Plan
 **Decide** by Friday
-- Send the draft</pre>
-                <div class="rendered"><span class="h">Meeting notes</span><strong>Decide</strong> by Friday<ul><li>Send the draft</li></ul></div>
+- Send the draft</textarea>
+                <div class="md-meta">
+                  <p id="md-hint">Try # for a heading, **bold**, *italic* or - for a list.</p>
+                  <p id="md-count"><span id="md-n">45</span> of 50</p>
+                </div>
+              </div>
+              <div class="md-panel" role="tabpanel" id="md-panel-preview" aria-labelledby="md-tab-preview" tabindex="0" hidden>
+                <div class="md-out" id="md-out"></div>
               </div>
             </div>
           </div>
@@ -194,7 +213,7 @@
         <article class="tile tile-export">
           <h3>Export when you're done</h3>
           <p>Save your document as a text file, a Markdown file or a PDF. An empty document can't be exported, so you never end up with a blank file.</p>
-          <div class="files" aria-hidden="true"><span class="file">.txt</span><span class="file">.md</span><span class="file pdf">.pdf</span></div>
+          <div class="files" aria-hidden="true"><span class="file txt">.txt</span><span class="file md">.md</span><span class="file pdf">.pdf</span></div>
         </article>
 
         <article class="tile tile-offline">
@@ -211,6 +230,151 @@
       </div>
     </section>
 
+    <section class="all-features" id="all-features" aria-labelledby="all-title">
+      <div class="section-head">
+        <h2 id="all-title">The full feature list</h2>
+        <p>The tiles above are the highlights. Here is everything else Clarity does, group by group.</p>
+      </div>
+      <nav class="jump" aria-label="Feature groups">
+        <ul class="chips">
+          <li><a href="#f-modes">Comfort modes and contrast</a></li>
+          <li><a href="#f-backgrounds">Animated backgrounds</a></li>
+          <li><a href="#f-type">Type and layout</a></li>
+          <li><a href="#f-writing">Writing and editing</a></li>
+          <li><a href="#f-markdown">Markdown</a></li>
+          <li><a href="#f-saving">Saving and your documents</a></li>
+          <li><a href="#f-listen">Listen</a></li>
+          <li><a href="#f-export">Export and copy</a></li>
+          <li><a href="#f-shortcuts">Keyboard shortcuts</a></li>
+          <li><a href="#f-install">Install and offline</a></li>
+          <li><a href="#f-access">Accessibility and small screens</a></li>
+        </ul>
+      </nav>
+      <div class="cats">
+        <article class="cat" id="f-modes" aria-labelledby="f-modes-t">
+          <h3 id="f-modes-t">Comfort modes and contrast</h3>
+          <ul class="feat">
+            <li><b>Three modes</b><span>Dark, Bright and Eye care. Switch any time, and each mode keeps its own settings.</span></li>
+            <li><b>Eye care tuning</b><span>Two sliders set brightness (8 to 60%) and warmth (20 to 55°), so you can cut blue light for night reading.</span></li>
+            <li><b>Live contrast check</b><span>A badge in the header shows how strongly your text stands out from the background, graded AAA, AA or Too low. It updates as you change mode or Eye care levels.</span></li>
+            <li><b>Colors for each mode</b><span>Each mode has its own text, accent, panel and border colors, chosen to stay readable.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-backgrounds" aria-labelledby="f-backgrounds-t">
+          <h3 id="f-backgrounds-t">Animated backgrounds</h3>
+          <ul class="feat">
+            <li><b>Dark mode</b><span>None, Aurora, Stars, Waves, Bubbles or Snowfall.</span></li>
+            <li><b>Bright mode</b><span>None, Clouds, Pastel Drift or Waves.</span></li>
+            <li><b>Eye care mode</b><span>None, Embers, Stars or Snowfall.</span></li>
+            <li><b>One pick per mode</b><span>Clarity remembers the background you chose in each mode.</span></li>
+            <li><b>Behind the text</b><span>The animation sits behind the text card, so it never lowers contrast. Choose None to switch it off.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-type" aria-labelledby="f-type-t">
+          <h3 id="f-type-t">Type and layout</h3>
+          <ul class="feat">
+            <li><b>14 fonts</b><span>System Sans, Atkinson Hyperlegible (easy-read), Inter, Source Sans, System Serif, Lora, Merriweather, Literata, EB Garamond, Playfair Display, IBM Plex Mono, Roboto Mono, Caveat and Comic Neue.</span></li>
+            <li><b>Font size</b><span>From 14px to 32px.</span></li>
+            <li><b>Line spacing</b><span>From tight (1.30) to airy (2.20).</span></li>
+            <li><b>Line width</b><span>From 45 to 95 characters per line, so lines never run too long to follow.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-writing" aria-labelledby="f-writing-t">
+          <h3 id="f-writing-t">Writing and editing</h3>
+          <ul class="feat">
+            <li><b>Paste clean</b><span>Paste plain text or Markdown and no formatting from the source comes along.</span></li>
+            <li><b>Title field</b><span>Name your document, or leave it blank and Clarity names it for you.</span></li>
+            <li><b>Edit and Preview</b><span>Switch between writing and the formatted page. The preview updates as you type.</span></li>
+            <li><b>Word and character count</b><span>Always visible below your settings.</span></li>
+            <li><b>Line breaks kept</b><span>Every time you press Enter, the break stays, so pasted text keeps its shape.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-markdown" aria-labelledby="f-markdown-t">
+          <h3 id="f-markdown-t">Markdown</h3>
+          <ul class="feat">
+            <li><b>Headings</b><span>Three levels, with # marks.</span></li>
+            <li><b>Bold and italic</b><span>Use ** or __ for bold, and * or _ for italic.</span></li>
+            <li><b>Code</b><span>Inline code and fenced code blocks.</span></li>
+            <li><b>Lists</b><span>Bulleted lists with - or *, and numbered lists.</span></li>
+            <li><b>Quotes and dividers</b><span>Blockquotes and horizontal rules.</span></li>
+            <li><b>Links</b><span>Links open in a new tab.</span></li>
+            <li><b>Safe by default</b><span>HTML you type shows up as text and never runs.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-saving" aria-labelledby="f-saving-t">
+          <h3 id="f-saving-t">Saving and your documents</h3>
+          <ul class="feat">
+            <li><b>Save and New</b><span>Save a document, or start a fresh one.</span></li>
+            <li><b>Saved list</b><span>Your documents sit newest first, with how long ago you changed them. Click to open, or press × to delete.</span></li>
+            <li><b>Automatic titles</b><span>No title? Clarity uses the first line, up to 48 characters.</span></li>
+            <li><b>Auto-saved draft</b><span>Your draft saves about a second after you stop typing, and comes back when you return.</span></li>
+            <li><b>Save messages</b><span>Clarity tells you when changes are unsaved, saved, loaded or restored.</span></li>
+            <li><b>Settings remembered</b><span>Mode, fonts, sizes, Eye care levels, backgrounds, language, voice and speed all stay as you left them.</span></li>
+            <li><b>Stays on your device</b><span>Documents and settings live in your browser. There is no account to make. Clearing your browser data removes them, so export anything you want to keep.</span></li>
+            <li><b>Storage warning</b><span>If your browser blocks storage, Clarity says so instead of failing quietly.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-listen" aria-labelledby="f-listen-t">
+          <h3 id="f-listen-t">Listen</h3>
+          <ul class="feat">
+            <li><b>Six languages</b><span>English, French, Portuguese (Brazil), Spanish, German and Mandarin Chinese.</span></li>
+            <li><b>Best voice picked for you</b><span>Clarity ranks the voices on your device and picks the most natural one for the language you choose.</span></li>
+            <li><b>Clear voice status</b><span>Languages with no voice on your device are marked, and Clarity lists which ones are missing.</span></li>
+            <li><b>Advanced voice picker</b><span>Choose a specific voice. Higher-quality voices get a ★, you get a warning if the voice doesn't match your language, and Undo takes you back to the automatic choice.</span></li>
+            <li><b>Free English voice</b><span>No English voice on your device? Download one in a single click (about 90 MB, once). Clarity shows real progress, tests the voice before calling it ready, and offers Retry if it fails.</span></li>
+            <li><b>Speed</b><span>From 0.60x to 1.60x.</span></li>
+            <li><b>Play, pause, resume, stop</b><span>With a status line that says what's happening.</span></li>
+            <li><b>Reads the words, not the marks</b><span>Markdown symbols aren't spoken, code blocks are skipped, and links are read as their text.</span></li>
+            <li><b>Clear fallback</b><span>If your browser can't read aloud, Clarity says so.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-export" aria-labelledby="f-export-t">
+          <h3 id="f-export-t">Export and copy</h3>
+          <ul class="feat">
+            <li><b>Three formats</b><span>Text (.txt), Markdown (.md) and PDF.</span></li>
+            <li><b>PDF that looks like your page</b><span>The PDF uses your current mode colors, font, size and spacing. A title prints only if you typed one.</span></li>
+            <li><b>Copy and Clear</b><span>Copy your text to the clipboard, or clear the editor.</span></li>
+            <li><b>Dated file names</b><span>Files are named from your title, with the date and time added.</span></li>
+            <li><b>No empty files</b><span>An empty document can't be exported, and Clarity tells you why.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-shortcuts" aria-labelledby="f-shortcuts-t">
+          <h3 id="f-shortcuts-t">Keyboard shortcuts</h3>
+          <ul class="feat">
+            <li><b>Save</b><span><kbd>Ctrl/⌘ S</kbd></span></li>
+            <li><b>New document</b><span><kbd>Ctrl/⌘ N</kbd></span></li>
+            <li><b>Export PDF</b><span><kbd>Ctrl/⌘ P</kbd></span></li>
+            <li><b>Download .txt</b><span><kbd>Ctrl/⌘ Shift D</kbd></span></li>
+            <li><b>Download .md</b><span><kbd>Ctrl/⌘ Shift M</kbd></span></li>
+            <li><b>Edit or Preview</b><span><kbd>Ctrl/⌘ E</kbd></span></li>
+            <li><b>Play or pause reading</b><span><kbd>Ctrl/⌘ Shift L</kbd></span></li>
+            <li><b>Dark, Bright or Eye care</b><span><kbd>Ctrl/⌘ 1</kbd> <kbd>2</kbd> <kbd>3</kbd></span></li>
+            <li><b>Show all shortcuts</b><span><kbd>?</kbd> or the ? button in the header. Esc closes it.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-install" aria-labelledby="f-install-t">
+          <h3 id="f-install-t">Install and offline</h3>
+          <ul class="feat">
+            <li><b>Install as an app</b><span>It opens in its own window. Use the Install Clarity button when your browser offers it, or Add to Home Screen on iPhone and iPad.</span></li>
+            <li><b>Works offline</b><span>After you install it, Clarity opens and runs without a connection, even from a cold start.</span></li>
+            <li><b>Updates itself</b><span>When a new version ships, the old saved copy is cleared and the new one takes over.</span></li>
+            <li><b>Home-screen icons</b><span>Icons for phones and desktops, including the rounded kind Android uses.</span></li>
+            <li><b>What needs a connection</b><span>Fonts load from the web, so offline Clarity shows your device's fonts instead. The free English voice needs a connection to download.</span></li>
+          </ul>
+        </article>
+        <article class="cat" id="f-access" aria-labelledby="f-access-t">
+          <h3 id="f-access-t">Accessibility and small screens</h3>
+          <ul class="feat">
+            <li><b>Visible keyboard focus</b><span>A clear outline shows where you are on every button, field and the editor.</span></li>
+            <li><b>Screen reader labels</b><span>Controls such as the mode switch, Edit and Preview, and delete buttons are labeled. The animated background is hidden from screen readers.</span></li>
+            <li><b>Preview you can reach</b><span>You can tab into the preview to scroll it with the keyboard.</span></li>
+            <li><b>Easy-read font</b><span>Atkinson Hyperlegible is one click away in the font list.</span></li>
+            <li><b>Phones and small screens</b><span>On narrow screens the settings move below the editor, so nothing gets squeezed.</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
     <section class="noor" id="noor" aria-labelledby="noor-title">
       <div class="noor-panel">
         <div class="noor-intro">
@@ -218,8 +382,8 @@
           <h2 id="noor-title">Clarity is a NOOR Productions build.</h2>
           <p>NOOR Productions is a web design and development studio. We design, build and launch websites and web apps for businesses, and we build them to be found. Clarity is the product we made for ourselves first, to show how we work.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="https://sk-abdus-sattar.github.io/noor-productions-site/contact.html">Start a project</a>
-            <a class="btn btn-ghost" href="https://sk-abdus-sattar.github.io/noor-productions-site/projects.html">See our work</a>
+            <a class="btn btn-primary" href="https://noor-productions.github.io/noor-productions-site/contact.html">Start a project</a>
+            <a class="btn btn-ghost" href="https://noor-productions.github.io/noor-productions-site/projects.html">See our work</a>
           </div>
           <p class="case-link"><a href="case-study.html">Read how we built Clarity</a></p>
         </div>
@@ -249,6 +413,9 @@
         <details><summary><span class="faq-q">Does Clarity work offline?</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-body"><p>Yes. Install it from your browser's install button, or use Add to Home Screen on an iPhone or iPad, and it keeps working without a connection. The one-click English voice needs a connection the first time you download it.</p></div></details>
         <details><summary><span class="faq-q">Which languages can Clarity read aloud?</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-body"><p>English, French, Portuguese (Brazil), Spanish, German and Mandarin Chinese, using the voices on your device. If a voice is missing, Clarity tells you. For English, it can download a voice for you in one click.</p></div></details>
         <details><summary><span class="faq-q">What can I export?</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-body"><p>Text (.txt), Markdown (.md) and PDF. An empty document can't be exported.</p></div></details>
+        <details><summary><span class="faq-q">Do I need an account, and where are my documents kept?</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-body"><p>No account. Your documents, drafts and settings are saved in your browser on your device. Clearing your browser data removes them, so export anything you want to keep.</p></div></details>
+        <details><summary><span class="faq-q">Can I change the font and text size?</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-body"><p>Yes. Pick from 14 fonts, including an easy-read one, then set the size (14 to 32px), line spacing and line width. Clarity remembers your choices.</p></div></details>
+        <details><summary><span class="faq-q">What are the keyboard shortcuts?</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-body"><p>Press ? in Clarity to see them all. They cover saving, new document, PDF export, downloads, Edit and Preview, read-aloud, and switching modes. The full list is in <a href="#f-shortcuts">Keyboard shortcuts</a> above.</p></div></details>
         <details><summary><span class="faq-q">Who made Clarity?</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-body"><p>Clarity is built and maintained by <a href="#noor">NOOR Productions</a>, a web design and development studio.</p></div></details>
       </div>
     </section>
@@ -259,9 +426,10 @@
 <footer>
   <div class="wrap">
     <span class="who"><i aria-hidden="true"></i>&copy; 2026 NOOR Productions</span>
-    <a href="https://sk-abdus-sattar.github.io/noor-productions-site/">Visit the NOOR Productions site</a>
+    <a href="https://noor-productions.github.io/noor-productions-site/">Visit the NOOR Productions site</a>
   </div>
 </footer>
+
 
 <script src="script.js"></script>
 </body>
